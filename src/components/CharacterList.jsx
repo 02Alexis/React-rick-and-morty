@@ -3,6 +3,7 @@ import Character from "./Character";
 
 function CharacterList() {
   const [characters, setCharacters] = useState([]);
+
   useEffect(() => {
     async function getData() {
       const response = await fetch("https://rickandmortyapi.com/api/character");
@@ -14,10 +15,16 @@ function CharacterList() {
   }, []);
 
   return (
-    <div>
-      {characters.map((character) => {
-        return <Character key={character.id} character={character} />;
-      })}
+    <div className="container bg-danger">
+      <div className="row">
+        {characters.map((character) => {
+          return (
+            <div key={character.id} className="col-md-4">
+              <Character character={character} />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }
